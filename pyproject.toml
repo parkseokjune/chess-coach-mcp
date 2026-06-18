@@ -1,0 +1,34 @@
+[project]
+name = "chess-coach-mcp"
+version = "0.1.0"
+description = "Hybrid AI chess coach as an MCP server: local Stockfish analysis + Lichess/Chess.com games, weakness diagnosis and personalised drills, bilingual (EN/KO)."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.28.0",
+    "python-chess>=1.999",
+]
+
+[project.scripts]
+chess-coach-mcp = "chess_coach_mcp.server:main"
+
+[build-system]
+requires = ["uv_build>=0.11.15,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.0",
+    "pytest-asyncio>=1.4.0",
+    "pytest-httpx>=0.36.2",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+    "engine: tests that require a real Stockfish binary",
+    "live: tests that hit the live network (deselected by default)",
+]
+addopts = "-m 'not live'"
