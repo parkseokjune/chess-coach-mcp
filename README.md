@@ -21,21 +21,21 @@ pip install chess-coach-mcp      # or: uvx chess-coach-mcp   (needs a local Stoc
 ## See it in action
 
 <p align="center">
-  <img src="docs/demo.gif" alt="Demo: a blunder, the engine's preferred move, and the recurring pattern" width="420">
+  <img src="https://raw.githubusercontent.com/parkseokjune/chess-coach-mcp/main/docs/demo.gif" alt="Demo: a blunder, the engine's preferred move, and the recurring pattern" width="420">
 </p>
 
 `diagnose_weaknesses` turns your recent games into a weakness report — recurring
 tactical blind spots and where you lose the most (by phase):
 
 <p align="center">
-  <img src="docs/weakness_report.png" alt="Weakness heatmap: tactical blind spots and average centipawn loss by phase" width="820">
+  <img src="https://raw.githubusercontent.com/parkseokjune/chess-coach-mcp/main/docs/weakness_report.png" alt="Weakness heatmap: tactical blind spots and average centipawn loss by phase" width="820">
 </p>
 
 …then `recommend_drills` hands back the exact positions you went wrong in — your
 move in red, the engine's in green — so you re-solve *your own* mistakes:
 
 <p align="center">
-  <img src="docs/board_example.png" alt="Annotated drill board: your move in red, the engine's move in green" width="340">
+  <img src="https://raw.githubusercontent.com/parkseokjune/chess-coach-mcp/main/docs/board_example.png" alt="Annotated drill board: your move in red, the engine's move in green" width="340">
 </p>
 
 > Numbers above are real Stockfish output; the weakness report uses an example
@@ -105,6 +105,7 @@ The five things that set it apart:
 | Tool | Purpose |
 |---|---|
 | `engine_status` | Check the local Stockfish binary is available. |
+| `render_board(fen, orientation)` | Show a position as a text board + Lichess link (no engine). |
 | `fetch_recent_games(username, source, max_games, speed)` | List recent games (no analysis). |
 | `analyze_position(fen, depth, multipv)` | Evaluate one position; top lines + flags. |
 | `analyze_game(pgn, depth, user_color, max_plies)` | Full per-move game review. |
@@ -112,7 +113,18 @@ The five things that set it apart:
 | `recommend_drills(username, source, max_games, depth, num_drills, include_daily_puzzle)` | Personalised drill set. |
 
 `source` is `lichess` (default) or `chesscom`. Every numeric/categorical fact
-ships with a `*_ko` Korean label for natural Korean coaching.
+ships with a `*_ko` Korean label for natural Korean coaching. Positions in tool
+output also carry a `board_ascii` text board and a `lichess_url`, so the coach
+can draw the board right in the chat or link you to an interactive one.
+
+### Does a board show up in chat?
+
+This is an MCP server: it returns **data** (FENs, evaluations, a `board_ascii`
+text board, a `lichess_url`), and your assistant turns that into coaching. So a
+graphical board doesn't pop up by itself — but the model can print the
+`board_ascii` board in any client, you can click the `lichess_url` for a real
+interactive board, and on claude.ai the model can draw an SVG board from the
+FEN. (The demo GIF above is a generated README asset, not the live chat UI.)
 
 ## Requirements
 

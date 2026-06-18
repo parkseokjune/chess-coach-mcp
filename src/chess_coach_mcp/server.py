@@ -13,7 +13,7 @@ from typing import Optional
 
 from mcp.server.fastmcp import FastMCP
 
-from . import analysis
+from . import analysis, render
 from .config import find_stockfish, get_settings
 from .diagnose import diagnose_weaknesses as _diagnose
 from .drills import recommend_drills as _recommend_drills
@@ -65,6 +65,22 @@ def engine_status() -> dict:
         return {"available": True, "path": path, "engine": name}
     except EngineError as exc:
         return {"available": False, "path": path, **_error(exc)}
+
+
+@mcp.tool()
+def render_board(fen: str, orientation: Optional[str] = None) -> dict:
+    """Render a position (FEN) as a text board + a clickable Lichess link.
+
+    Returns an ASCII board (legible in any terminal), a Unicode board, the side
+    to move, and a Lichess analysis URL for a real interactive board. Use this
+    whenever the user wants to *see* a position — it needs no engine. Most other
+    tools already include `board_ascii` / `lichess_url` for their positions.
+    orientation is 'white' or 'black' (defaults to the side to move).
+    """
+    try:
+        return render.render(fen, orientation=orientation)
+    except ValueError as exc:
+        return _error(exc)
 
 
 @mcp.tool()

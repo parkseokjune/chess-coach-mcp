@@ -1,6 +1,6 @@
 [project]
 name = "chess-coach-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "Hybrid AI chess coach as an MCP server: local Stockfish analysis + Lichess/Chess.com games, weakness diagnosis and personalised drills, bilingual (EN/KO)."
 readme = "README.md"
 requires-python = ">=3.11"

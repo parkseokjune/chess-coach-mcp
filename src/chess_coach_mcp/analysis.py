@@ -13,7 +13,7 @@ from typing import List, Optional
 import chess
 import chess.pgn
 
-from . import models, motifs
+from . import models, motifs, render
 from .config import get_settings
 from .engine import Evaluation, StockfishEngine, move_accuracy, win_percent
 from .motifs import PIECE_VALUE
@@ -265,6 +265,7 @@ def analyze_game(
             "phase": r["phase"],
             "motifs": r["motifs"],
             "fen_before": r["fen_before"],
+            "lichess_url": render.lichess_analysis_url(r["fen_before"]),
         }
         for r in worst[:worst_n]
     ]
@@ -330,6 +331,8 @@ def analyze_position(
             "is_checkmate": board.is_checkmate(),
             "is_stalemate": board.is_stalemate(),
             "side_to_move": "white" if board.turn == chess.WHITE else "black",
+            "board_ascii": render.board_text(board, unicode=False),
+            "lichess_url": render.lichess_analysis_url(board.fen()),
         }
 
     settings = get_settings()
@@ -375,4 +378,6 @@ def analyze_position(
         "lines": lines,
         "fork_threats": motifs.detect_fork(board, board.turn),
         "pins_against_opponent": motifs.detect_pins(board, board.turn),
+        "board_ascii": render.board_text(board, unicode=False),
+        "lichess_url": render.lichess_analysis_url(board.fen()),
     }

@@ -8,6 +8,7 @@ from chess_coach_mcp import server
 
 EXPECTED_TOOLS = {
     "engine_status",
+    "render_board",
     "analyze_position",
     "analyze_game",
     "fetch_recent_games",

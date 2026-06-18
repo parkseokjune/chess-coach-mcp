@@ -42,6 +42,8 @@ async def test_recommend_drills_from_own_blunders(
         assert d["side_to_move"] in ("white", "black")
         assert d["answer_uci"] or d["answer_san"]
         assert d["prompt_ko"]
+        assert d["board_ascii"]
+        assert d["lichess_url"].startswith("https://lichess.org/analysis/")
     assert result["bonus_puzzle"] is not None
     assert result["bonus_puzzle"]["fen"]
     assert result["focus_areas"]

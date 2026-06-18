@@ -12,7 +12,7 @@ from typing import List, Optional
 
 import httpx
 
-from . import models
+from . import models, render
 from .diagnose import diagnose_weaknesses
 from .sources import fetch_daily_puzzle
 
@@ -39,6 +39,8 @@ def _drill_from_blunder(eb: dict) -> dict:
         "type": "own_blunder",
         "fen": eb["fen_before"],
         "side_to_move": stm,
+        "board_ascii": render.board_text(eb["fen_before"], unicode=False),
+        "lichess_url": render.lichess_analysis_url(eb["fen_before"]),
         "theme": theme,
         "theme_ko": theme_ko,
         "prompt": f"{stm.capitalize()} to move. You went wrong here in a real "
@@ -96,6 +98,8 @@ async def recommend_drills(
                 "type": "lichess_daily_puzzle",
                 "fen": puzzle["fen"],
                 "side_to_move": puzzle["side_to_move"],
+                "board_ascii": render.board_text(puzzle["fen"], unicode=False),
+                "lichess_url": render.lichess_analysis_url(puzzle["fen"]),
                 "themes": puzzle.get("themes", []),
                 "rating": puzzle.get("rating"),
                 "prompt": f"{puzzle['side_to_move'].capitalize()} to move. "
