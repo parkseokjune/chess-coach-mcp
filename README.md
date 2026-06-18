@@ -34,6 +34,39 @@ diagnosis is computed from the player's actual games.
   blunders**, ordered to target their top weaknesses, plus a Lichess daily
   puzzle warm-up.
 
+## What makes it different (차별점)
+
+Most chess tools do one thing well, so you end up stitching several together.
+`chess-coach-mcp` is the missing **grounding + personalisation layer**, delivered
+right where you already work — inside your AI assistant.
+
+| | chess-coach-mcp | Stockfish alone | DecodeChess | Aimchess | Chessable |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Best move (**what**) | ✅ | ✅ | ✅ | ◐ | – |
+| Explains the **why** in prose | ✅ | ❌ | ✅ | ❌ | – |
+| **Personal** weakness diagnosis across your games | ✅ | ❌ | ❌ | ✅ | ❌ |
+| Drills from **your own** blunders | ✅ | ❌ | ❌ | ◐ | ❌ |
+| **Korean** (bilingual) coaching | ✅ | ❌ | ❌ | ❌ | ❌ |
+| **Local / private** (your engine, no account) | ✅ | ✅ | ❌ cloud | ❌ cloud | ❌ cloud |
+| Lives **inside your AI assistant** (MCP) | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Cost | free, OSS | free | subscription | subscription | paid courses |
+
+The five things that set it apart:
+
+1. **Hybrid & grounded** — Stockfish is the judge, the LLM is the explainer.
+   Every coaching claim is backed by the engine, so there are no hallucinated
+   evaluations or made-up lines (the failure mode of asking a raw LLM about chess).
+2. **Personal, not generic** — `diagnose_weaknesses` aggregates *your* games into
+   phase weaknesses, recurring tactical blind spots and leaky openings;
+   `recommend_drills` quizzes you on *your own* blunder positions — not random
+   puzzles at your rating.
+3. **Bilingual EN/KO** — every structured fact carries a Korean label, so the
+   coaching reads naturally in Korean (한국어 코칭).
+4. **Local-first & private** — your own Stockfish binary + public read-only APIs.
+   No account, no API key, nothing about your games is uploaded anywhere.
+5. **Inside your assistant** — it's an MCP server, so coaching happens in the same
+   chat you already use, composable with everything else your assistant can do.
+
 ## Tools
 
 | Tool | Purpose |
