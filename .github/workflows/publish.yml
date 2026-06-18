@@ -1,0 +1,29 @@
+name: Publish to PyPI
+
+# Publishes on a GitHub Release using PyPI Trusted Publishing (OIDC) — no API
+# token stored in the repo. One-time setup on PyPI: add a trusted publisher for
+# project "chess-coach-mcp" -> owner "parkseokjune", repo "chess-coach-mcp",
+# workflow "publish.yml", environment "pypi".
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write  # required for Trusted Publishing
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Build sdist + wheel
+        run: uv build
+
+      - name: Publish to PyPI
+        run: uv publish --trusted-publishing always

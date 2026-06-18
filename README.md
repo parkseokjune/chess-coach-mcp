@@ -1,5 +1,9 @@
 # chess-coach-mcp
 
+[![CI](https://github.com/parkseokjune/chess-coach-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/parkseokjune/chess-coach-mcp/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A **hybrid AI chess coach** exposed as an [MCP](https://modelcontextprotocol.io)
 server. A local **Stockfish** engine supplies grounded evaluations, mistake
 classifications and tactical motifs; your MCP host model (e.g. Claude) turns
