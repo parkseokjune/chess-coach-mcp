@@ -1,5 +1,6 @@
 # chess-coach-mcp
 
+[![PyPI](https://img.shields.io/pypi/v/chess-coach-mcp.svg)](https://pypi.org/project/chess-coach-mcp/)
 [![CI](https://github.com/parkseokjune/chess-coach-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/parkseokjune/chess-coach-mcp/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -12,6 +13,34 @@ those facts into natural-language — **Korean or English** — coaching.
 > The engine knows **what** the best move is. The model explains **why**.
 > This project wires the two together and adds the piece neither does alone:
 > *"here is **your** recurring mistake, drilled from **your** own games."*
+
+```bash
+pip install chess-coach-mcp      # or: uvx chess-coach-mcp   (needs a local Stockfish)
+```
+
+## See it in action
+
+<p align="center">
+  <img src="docs/demo.gif" alt="Demo: a blunder, the engine's preferred move, and the recurring pattern" width="420">
+</p>
+
+`diagnose_weaknesses` turns your recent games into a weakness report — recurring
+tactical blind spots and where you lose the most (by phase):
+
+<p align="center">
+  <img src="docs/weakness_report.png" alt="Weakness heatmap: tactical blind spots and average centipawn loss by phase" width="820">
+</p>
+
+…then `recommend_drills` hands back the exact positions you went wrong in — your
+move in red, the engine's in green — so you re-solve *your own* mistakes:
+
+<p align="center">
+  <img src="docs/board_example.png" alt="Annotated drill board: your move in red, the engine's move in green" width="340">
+</p>
+
+> Numbers above are real Stockfish output; the weakness report uses an example
+> dataset. Regenerate everything with
+> `uv run --with matplotlib --with pillow python docs/generate_assets.py`.
 
 ## Why this exists
 
@@ -93,6 +122,17 @@ ships with a `*_ko` Korean label for natural Korean coaching.
   - Debian/Ubuntu: `apt install stockfish`
 
 ## Install & run
+
+From PyPI:
+
+```bash
+pip install chess-coach-mcp
+chess-coach-mcp               # run the MCP server over stdio
+# …or run without installing:
+uvx chess-coach-mcp
+```
+
+From source:
 
 ```bash
 uv sync                      # install dependencies
