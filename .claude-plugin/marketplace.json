@@ -1,0 +1,15 @@
+{
+  "name": "chess-coach-mcp",
+  "description": "Chess coaching plugin for Claude Code: the chess-coach MCP server plus a skill that tells Claude when and how to use it.",
+  "owner": {
+    "name": "Park Seokjune",
+    "url": "https://github.com/parkseokjune"
+  },
+  "plugins": [
+    {
+      "name": "chess-coach",
+      "source": "./",
+      "description": "Stockfish-grounded game review, weakness diagnosis and personalised drills from your Lichess/Chess.com games (EN/KO)."
+    }
+  ]
+}

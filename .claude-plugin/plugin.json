@@ -1,0 +1,23 @@
+{
+  "name": "chess-coach",
+  "displayName": "Chess Coach",
+  "version": "0.1.2",
+  "description": "Hybrid chess coach: local Stockfish analysis of your Lichess/Chess.com games, personal weakness diagnosis and drills from your own blunders, coached in English or Korean.",
+  "author": {
+    "name": "Park Seokjune",
+    "url": "https://github.com/parkseokjune"
+  },
+  "homepage": "https://github.com/parkseokjune/chess-coach-mcp",
+  "repository": "https://github.com/parkseokjune/chess-coach-mcp",
+  "license": "MIT",
+  "keywords": ["chess", "stockfish", "lichess", "chess.com", "coaching", "korean"],
+  "mcpServers": {
+    "chess-coach": {
+      "command": "uv",
+      "args": ["run", "--directory", "${CLAUDE_PLUGIN_ROOT}", "--frozen", "--no-dev", "--no-editable", "--quiet", "chess-coach-mcp"],
+      "env": {
+        "UV_PROJECT_ENVIRONMENT": "${CLAUDE_PLUGIN_DATA}/venv"
+      }
+    }
+  }
+}
