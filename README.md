@@ -151,9 +151,35 @@ uv sync                      # install dependencies
 uv run chess-coach-mcp       # run the MCP server over stdio
 ```
 
-### Register with Claude Code
+### Install as a Claude Code plugin (server + skill)
+
+The repo is also a Claude Code plugin marketplace. One install gives you the
+MCP server **and** the [`chess-coach` skill](skills/chess-coach/SKILL.md),
+which tells Claude when to call each tool, how to read the results and how to
+coach from them (grounded claims only, drills as quizzes, Korean labels).
+Needs [`uv`](https://docs.astral.sh/uv/) and Stockfish.
+
+```text
+/plugin marketplace add parkseokjune/chess-coach-mcp
+/plugin install chess-coach@chess-coach-mcp
+```
+
+On Claude Code 2.1.275 or later this is one step:
+`/plugin install chess-coach --marketplace parkseokjune/chess-coach-mcp`.
+
+### Use the skill with other agents
+
+[`skills/chess-coach/`](skills/chess-coach/) follows the open
+[Agent Skills](https://agentskills.io) format, so it also works in other
+skill-aware agents (Cursor, Codex CLI, Gemini CLI, GitHub Copilot…). Register
+the MCP server as below, then copy that folder into the agent's skills
+directory (for Claude Code without the plugin: `~/.claude/skills/chess-coach/`).
+
+### Register with Claude Code (server only)
 
 ```bash
+claude mcp add chess-coach -- uvx chess-coach-mcp
+# …or from a source checkout:
 claude mcp add chess-coach -- uv --directory /ABS/PATH/TO/chess-coach-mcp run chess-coach-mcp
 ```
 
