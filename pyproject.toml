@@ -1,6 +1,6 @@
 [project]
 name = "chess-coach-mcp"
-version = "0.1.1"
+version = "0.1.2"
 description = "Hybrid AI chess coach as an MCP server: local Stockfish analysis + Lichess/Chess.com games, weakness diagnosis and personalised drills, bilingual (EN/KO)."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -10,7 +10,7 @@ authors = [{ name = "Park Seokjune", email = "parkseokjune@gmail.com" }]
 keywords = ["chess", "mcp", "stockfish", "coaching", "lichess", "chess.com", "model-context-protocol"]
 dependencies = [
     "httpx>=0.28.1",
-    "mcp[cli]>=1.28.0",
+    "mcp[cli]>=1.28.0,<2",
     "python-chess>=1.999",
 ]
 

@@ -135,7 +135,7 @@ sdist = { url = "https://files.pythonhosted.org/packages/93/09/7d04d7581ae3bb8b5
 
 [[package]]
 name = "chess-coach-mcp"
-version = "0.1.1"
+version = "0.1.2"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
@@ -153,7 +153,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "httpx", specifier = ">=0.28.1" },
-    { name = "mcp", extras = ["cli"], specifier = ">=1.28.0" },
+    { name = "mcp", extras = ["cli"], specifier = ">=1.28.0,<2" },
     { name = "python-chess", specifier = ">=1.999" },
 ]
 

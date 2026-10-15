@@ -6,5 +6,5 @@ Local Stockfish supplies grounded evaluations; the MCP host model supplies the
 
 from .server import main
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __all__ = ["main", "__version__"]
